@@ -1,0 +1,61 @@
+.authorization-container{
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  color: white;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .register-box-row{
+    width: 100%;
+    
+    .register-box-col{
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 1rem;
+      text-align: center;
+
+      #header{
+        font-size: 2rem;
+        font-family: 'Rowdies';
+        margin-bottom: 1rem;
+        color: white;
+        text-decoration: none;
+      }
+
+
+      .form-control, .btn-submit{
+        padding: .7rem 1rem;
+        width: 100%;
+      }
+
+      .spacer{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        margin: 1rem 0rem;
+
+        .spacer-line{
+          width: 100%;
+          height: 1px;
+          background-color: white;
+        }
+        
+        .spacer-text{
+          margin: 0rem 1rem;
+        }
+
+      }
+
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  #header{font-size: 3rem !important;}
+}

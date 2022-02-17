@@ -1,0 +1,10 @@
+
+.d-flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.font-rowdies{
+  font-family: "Rowdies";
+}

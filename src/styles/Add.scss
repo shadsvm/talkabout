@@ -1,0 +1,19 @@
+
+.form-control{
+  background-color: var(--dark) !important;
+  color: white !important;
+  border: 0px !important;
+
+}
+
+form{
+  *:focus {
+    outline: none;
+  }
+}
+
+.note{
+  font-size: .9rem;
+  padding-top: 1rem;
+  color: rgb(60,60,60);
+}

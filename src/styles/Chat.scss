@@ -1,0 +1,38 @@
+
+#chat-container{
+  height: calc(100vh - 4rem - 5rem);
+  background-color: rgb(20, 20, 21);
+  
+  #chat-box{
+    overflow-y: scroll;
+    height: 100%;
+    padding: 2.1rem;
+
+    .chat-message-text{
+      border-radius: 2rem;
+      color: white;
+      border: 1px solid var(--dark);
+    }
+  }
+  
+
+  #chat-form{
+    height: 5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.2rem;
+
+    #chat-form-input{
+      border-radius: 2rem;
+      background-color: var(--dark);
+      border: none;
+      color: white;
+    }
+  }
+  
+}
+
+@media (min-width: 576px){
+  #chat-container{height: calc(100vh - 5rem);}
+}
