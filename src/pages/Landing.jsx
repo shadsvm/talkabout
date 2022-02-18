@@ -12,7 +12,7 @@ const Landig = () => {
       <main id='landing'>
         <Navbar type={'landing'} />
         <div id='hero' className="container text-center">
-          <h1>SO, LETS TALKABOUT...</h1>
+          <h1>SO, LET'S TALKABOUT...</h1>
           <h5 className='pt-4'>...a place, where you and your friends can group in to teams and chat privately </h5>
           <h5>Delete all team data stored on server at any time, secure your teams by setting password</h5>
           <h5 className='pt-3'>Create your own team, then send a URL to your friend, </h5>
