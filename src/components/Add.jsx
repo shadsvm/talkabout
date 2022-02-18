@@ -53,7 +53,14 @@ const Add = () => {
 
     if (team.val().password !== joinTeamPW) return runAlert('Wrong password!')
 
-    await update(ref(db, 'users/' + currentUser.displayName + '/teams'), {[joinTeamID]: true})
+    const updates = {}
+    const promptID = push(child(ref(db), 'teams/' + joinTeamID + '/messages')).key;
+
+    updates['users/' + currentUser.displayName + '/teams/' + joinTeamID] = true
+    updates['teams/' + joinTeamID + '/messages/' + promptID] = {text: `${currentUser.displayName} joined the team.`, type: 'prompt', date: new Date()}
+
+    await update(ref(db), updates)
+
     navigate("/t/" + joinTeamID, { replace: true })
     
   }

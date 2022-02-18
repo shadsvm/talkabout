@@ -8,6 +8,14 @@
     height: 100%;
     padding: 2.1rem;
 
+    .prompt{
+      text-align: center;
+      letter-spacing: 1px;
+      font-size: .9rem;
+      padding: 2rem 0rem;
+      color: rgb(70,70,70);
+    }
+
     .chat-message-text{
       border-radius: 2rem;
       color: white;

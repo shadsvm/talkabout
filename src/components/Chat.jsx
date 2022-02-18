@@ -53,10 +53,11 @@ const Chat = () => {
 
       <div id="chat-box" className="d-flex flex-column">
         {messages.map(message => (
+          (message?.type === 'prompt' ? (<div key={message.id} className="prompt">{message.text}</div>) : (
           <div className={`chat-message d-flex gap-3 mt-3 m-0 ${currentUser.displayName === message.user ? 'justify-content-end' : '' } `} key={message.id}>
             <Avatar className={`p-0 ${currentUser.displayName === message.user ? 'order-2' : '' }`} name={message.user} round={true} size="40" textSizeRatio={2} />
             <div className="chat-message-text px-4 d-flex align-items-center">{message.text}</div>
-          </div>
+          </div> ))
         ))}
         <div ref={dummy}></div>
       </div>
