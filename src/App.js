@@ -10,6 +10,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import Dashboard from './pages/Dashboard';
 import Chat from './components/Chat';
 import Profile from './pages/Profile';
+import Details from './pages/Details';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
 
             <Route path='/t' element={<Dashboard />}>
               <Route path=':ID' element={<Chat />} />
+              <Route path=':ID/details' element={<Details />} />
               <Route path='add' element={<Add />} />
               <Route path='teams' element={<Teams />} />
               <Route path='profile' element={<Profile />} />

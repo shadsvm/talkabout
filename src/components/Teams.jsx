@@ -6,6 +6,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { getDatabase, ref, get, child } from "firebase/database";
 
 import Avatar from 'react-avatar';
+import {CgDetailsMore} from 'react-icons/cg'
 import '../styles/Teams.scss'
 
 
@@ -49,20 +50,26 @@ const Teams = () => {
     if (!loading) fetchTeams()
   }, [db, currentUser, navigate, loading])
 
+
   return (
     <main id='teams-container' > 
 
       <div id='teams-list' >
-        {teams && teams.map(team => (
-          <Link to={`/t/${team.id}`} className={`team ${ID===team.id ? 'team-active' : ''}`} key={team.id}>
+        {teams && teams.map(team => (<div className={`team ${ID===team.id ? 'team-active' : ''}`}  key={team.id}>
+          <Link to={`/t/${team.id}`} className='team-info' >
             <Avatar name={team.name} round={true} size="30" textSizeRatio={1.5} />
-            <div className='d-flex flex-column '>
+            <div className='d-flex flex-column'>
               <div className='team-name'>{team.name}</div>
               {team?.lastMessage?.user && team?.lastMessage?.text ? 
               (<div className='team-last-message text-muted'>{team.lastMessage.user}: {team?.lastMessage.text}</div>) : <></> }
             </div>
           </Link>
-        ))}
+
+          <Link to={`/t/${team.id}/details`} className='team-details'>
+            <CgDetailsMore />
+          </Link>
+        
+        </div>))}
       </div>
     </main>
   )

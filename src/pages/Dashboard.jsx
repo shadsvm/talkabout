@@ -23,9 +23,9 @@ const Dashboard = () => {
       <div className="container-fluid">
         <div className="row">
 
-          <div className="col-12 col-sm-3 p-0 ">
+          <div className="col-12 col-md-4 col-lg-3 p-0 ">
             <Navbar type="dashboard" />
-            <div className='d-none d-sm-block'><Teams /></div>
+            <div className='d-none d-md-block'><Teams /></div>
           </div>
 
           <div className="col p-0">

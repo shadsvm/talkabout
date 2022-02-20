@@ -1,0 +1,76 @@
+$dropdown-dark-bg: var(--dark-4) !important; 
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+
+input:focus, input.form-control:focus {
+
+  outline:none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+#details{
+  margin-top: 4rem;
+  padding: 1rem;
+
+  #header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    #team-name{
+      font-size: 2rem;
+    }
+  }
+
+  .box-wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+
+    .box-header{
+      font-size: .9rem;
+      color: var(--dark-1);
+    }
+
+    .box{
+      padding: 0rem 1rem;
+      background-color: var(--dark-5);
+      border-radius: .7rem;
+
+      .box-item{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: .7rem;
+        border-bottom: 1px solid var(--dark-3);
+        gap: 2rem;
+        .box-item-left{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 1rem;
+        }
+        
+      }
+
+      .dropdown-item{
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        padding: .5rem 2rem;
+        border-bottom: 1px solid var(--dark-3);
+
+        .admin-tools{
+          display: flex;
+          gap: .5rem;
+        }
+      }
+    }
+  }
+}

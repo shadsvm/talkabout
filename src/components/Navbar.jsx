@@ -48,7 +48,7 @@ const Navbar = ({type}) => {
           <IoMdAddCircleOutline />
         </Link>
 
-        <Link to={'/t/teams'} className='navbar-dash-item d-sm-none'>
+        <Link to={'/t/teams'} className='navbar-dash-item d-md-none'>
           <AiOutlineTeam />
         </Link>
 

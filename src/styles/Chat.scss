@@ -12,14 +12,14 @@
       text-align: center;
       letter-spacing: 1px;
       font-size: .9rem;
-      padding: 2rem 0rem;
+      padding: 1rem 0rem;
       color: rgb(70,70,70);
     }
 
     .chat-message-text{
       border-radius: 2rem;
       color: white;
-      border: 1px solid var(--dark);
+      border: 1px solid var(--dark-4);
     }
   }
   
@@ -33,7 +33,7 @@
 
     #chat-form-input{
       border-radius: 2rem;
-      background-color: var(--dark);
+      background-color: var(--dark-4);
       border: none;
       color: white;
     }
@@ -41,6 +41,6 @@
   
 }
 
-@media (min-width: 576px){
+@media (min-width: 768px){
   #chat-container{height: calc(100vh - 5rem);}
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { getDatabase, ref, onValue, push, update} from "firebase/database";
 import { useAuth } from "../contexts/AuthContext";
@@ -9,16 +9,18 @@ import '../styles/Chat.scss'
 
 const Chat = () => {
 
+  const navigate = useNavigate()
   const {ID} = useParams()
-  const db = getDatabase();
-  const messagesRef = ref(db, 'teams/' + ID + '/messages');
+  const db = getDatabase()
+  const messagesRef = ref(db, 'teams/' + ID + '/messages')
   const {currentUser} = useAuth()
   
   const dummy = useRef()
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
  
-  useEffect(()=> {
+  // Messages tracker
+  useEffect(() => {
     const detach = onValue(ref(db, 'teams/' + ID + '/messages'), (snapshot) => {
       if (snapshot.exists()){
         const data = snapshot.val()
@@ -31,8 +33,17 @@ const Chat = () => {
     });
 
     return () => detach()
-
   }, [db, ID])
+
+  // Kick tracker
+  useEffect(() => {
+    const detach = onValue(ref(db, 'teams/' + ID + '/members/'), (snapshot) => {
+      if (!snapshot.exists()) return
+      if (!snapshot.val()[currentUser.displayName])
+        navigate('/t/add', {replace: true})
+    })
+    return () => detach()
+  })
 
   const sendMessage = (event) => {
     event.preventDefault()

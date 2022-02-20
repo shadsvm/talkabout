@@ -28,8 +28,8 @@
 #navbar-dash{
   height: 4rem;
   width: 100%;
-  // border: 1px solid var(--dark);
-  // border-bottom: 3px solid var(--dark);
+  // border: 1px solid var(--dark-4);
+  // border-bottom: 3px solid var(--dark-4);
   // background-color: rgb(29, 29, 29);
 
   padding: 1rem;
@@ -55,5 +55,11 @@
       font-size: 1.5rem !important;
       color: white;
     }
+  }
+}
+
+@media (min-width: 768px){
+  #navbar-dash{
+    border-right: 1px solid var(--dark-4);
   }
 }

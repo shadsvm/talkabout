@@ -37,8 +37,12 @@ const Add = () => {
     
     const newTeamID = push(child(ref(db), 'teams')).key;
     await set(ref(db, 'teams/' + newTeamID), {name: createTeamName, admin: currentUser.displayName, password: createTeamPW ?? '' })
-    await update(ref(db, 'users/' + currentUser.displayName + '/teams'), {[newTeamID]: true})
     
+    const updates = {}
+    updates['teams/' + newTeamID + '/members/' + currentUser.displayName] = true
+    updates['users/' + currentUser.displayName + '/teams/' + newTeamID] = true
+    await update(ref(db), updates)
+    // await update(ref(db, 'users/' + currentUser.displayName + '/teams'), {[newTeamID]: true})
     navigate("/t/" + newTeamID, { replace: true })
   }
 
@@ -50,13 +54,15 @@ const Add = () => {
     const team = await get(ref(db, 'teams/' + joinTeamID))
 
     if (!team.exists()) return runAlert()
-
+    let data = team.val()
+    if (data?.banned && Object.keys(data.banned).includes(currentUser.displayName)) return runAlert('You are banned!')
     if (team.val().password !== joinTeamPW) return runAlert('Wrong password!')
 
     const updates = {}
     const promptID = push(child(ref(db), 'teams/' + joinTeamID + '/messages')).key;
 
     updates['users/' + currentUser.displayName + '/teams/' + joinTeamID] = true
+    updates['teams/' + joinTeamID + '/members/' + currentUser.displayName] = true
     updates['teams/' + joinTeamID + '/messages/' + promptID] = {text: `${currentUser.displayName} joined the team.`, type: 'prompt', date: new Date()}
 
     await update(ref(db), updates)

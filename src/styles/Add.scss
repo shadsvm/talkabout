@@ -1,6 +1,6 @@
 
 .form-control{
-  background-color: var(--dark) !important;
+  background-color: var(--dark-4) !important;
   color: white !important;
   border: 0px !important;
 
@@ -15,5 +15,5 @@ form{
 .note{
   font-size: .9rem;
   padding-top: 1rem;
-  color: rgb(60,60,60);
+  color: var(--dark-4-2);
 }
