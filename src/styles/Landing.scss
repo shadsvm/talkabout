@@ -4,7 +4,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
-  
+  height: 100vh;
   // background-color: #00000060;
   
   #hero{
@@ -14,17 +14,17 @@
 
     h1{
       font-family: 'Rowdies';
-      font-size: 3rem;
+      font-size: 2rem;
     }
 
-    h5{font-size: 1.1rem;}
+    h5{font-size: 1rem;}
 
 
     #btn-group{
       padding-top: 2rem;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
+      gap: 1rem;
 
       a{
         font-size: 1rem;
@@ -82,6 +82,7 @@ footer{
     h5{font-size: 1.25rem !important;}
 
     #btn-group{
+      gap: 2rem;
       a{font-size: 1.3rem !important;}
     }
   }

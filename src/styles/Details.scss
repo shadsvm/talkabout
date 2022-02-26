@@ -13,7 +13,7 @@ input:focus, input.form-control:focus {
 }
 
 #details{
-  margin-top: 4rem;
+  margin-top: 2rem;
   padding: 1rem;
 
   #header{
@@ -21,6 +21,8 @@ input:focus, input.form-control:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+    color: white;
 
     #team-name{
       font-size: 2rem;
@@ -55,8 +57,11 @@ input:focus, input.form-control:focus {
           flex-direction: row;
           align-items: center;
           gap: 1rem;
+
+          .box-item-icon{
+            font-size: 1.5rem;
+          }
         }
-        
       }
 
       .dropdown-item{
@@ -71,6 +76,25 @@ input:focus, input.form-control:focus {
           gap: .5rem;
         }
       }
+
+      #team-id{
+        cursor: pointer;
+        
+        &.copied{
+          border-radius: 1rem;
+          // border: 2px solid blue !important;
+          animation-name: pulse;
+          animation-duration: .5s;
+
+        }
+      }
     }
   }
+}
+
+@keyframes pulse {
+  0% {border: 0px;}
+  20% {border: 2px solid green;}
+  80% {border: 2px solid green;}
+  100% {border: 0px;}
 }

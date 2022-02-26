@@ -8,8 +8,8 @@
   // Change team avatar
 
 import { getDatabase, onValue, ref, update, push, remove } from "firebase/database"
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useEffect, useRef, useState } from "react"
+import { useParams, Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext"
 
 // import {MdKeyboardArrowRight} from 'react-icons/md'
@@ -31,15 +31,26 @@ const Details = () => {
   const {ID} = useParams()
   const {currentUser} = useAuth()
   const [team, setTeam] = useState({})
+  const navigate = useNavigate()
 
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
+
+  const copyTeamID_ref = useRef()
 
   useEffect(()=> {
     const detach = onValue(ref(db, 'teams/' + ID), snapshot => { if (snapshot.exists()) setTeam(snapshot.val()) })
     return () => detach()
   }, [db, ID])
 
+  // Kick tracker
+  useEffect(() => {
+    const detach = onValue(ref(db, 'teams/' + ID + '/members/'), (snapshot) => {
+      if (!snapshot.exists()) return navigate('/t/add', {replace: true})
+      if (!snapshot.val()[currentUser.displayName]) navigate('/t/add', {replace: true})
+    })
+    return () => detach()
+  })
 
   const changeName = event => {
     event.preventDefault()
@@ -59,6 +70,11 @@ const Details = () => {
   const deleteMessages = async () => {
     await remove(ref(db, "/teams/" + ID + '/messages'))
     await push(ref(db, "/teams/" + ID + '/messages'), {text: `All messages has been deleted by ${currentUser.displayName}`, type: 'prompt', date: new Date()} )
+  }
+
+  const deleteGroup = async () => {
+    for (let user in team.members) { await kickUser(user) }
+    await remove(ref(db, 'teams/' + ID))
   }
 
   const kickUser = async (user) => {
@@ -81,6 +97,12 @@ const Details = () => {
     await push(ref(db, "/teams/" + ID + '/messages'), {text: `${user} has been unbanned.`, type: 'prompt', date: new Date()})
   }
 
+  const copyTeamID = () => {
+    copyTeamID_ref.current.className = "box-item copied"
+    setTimeout(() => copyTeamID_ref.current.className = "box-item", 500)
+    navigator.clipboard.writeText(ID)
+  }
+
   const AdminTools = ({member}) => (
     <div className="admin-tools">
       <button className="btn btn-sm btn-outline-warning" onClick={() => kickUser(member)}>Kick</button>
@@ -94,10 +116,10 @@ const Details = () => {
       <div className="row justify-content-center align-items-center">
         <div className="col-12 col-sm-10 col-md-9 col-lg-7">
 
-          <header id="header">
+          <Link to={`/t/${ID}`} id="header">
               <Avatar name={team.name} round={true} size="60"   />
               <div id="team-name">{team.name}</div>
-          </header>
+          </Link>
 
 
           {/* GENERAL */}
@@ -116,7 +138,7 @@ const Details = () => {
                     Name
                   </div>
                   <form className="input-group input-group-sm" onSubmit={e => changeName(e)}>
-                    <input type="text" className="form-control" placeholder="Type new name" value={name} onChange={e => setName(e.target.value)} />
+                    <input type="text" className="form-control" placeholder="Set a team name" value={name} onChange={e => setName(e.target.value)} />
                     <button className="btn btn-outline-secondary" type="submit">Save</button>
                   </form>
                   
@@ -124,11 +146,11 @@ const Details = () => {
 
               </> : <></>}
 
-              {/*  Group Members  */}
+              {/*  Team Members  */}
               <div className="box-item dropdown-toggle" data-bs-toggle="dropdown" id="dropdownMenuButton1"  >
                 <div className="box-item-left ">
                   <BsPeopleFill />
-                  See group members
+                  Team members
                 </div>
               </div>
 
@@ -147,12 +169,12 @@ const Details = () => {
               </ul>
 
               {/*  Team ID  */}
-              <div className="box-item" onClick={() => {navigator.clipboard.writeText(ID)}}>
+              <div id="team-id" className="box-item" ref={copyTeamID_ref} onClick={copyTeamID}>
                 <div className="box-item-left">
-                  <IoKey />
+                  <IoKey className="box-item-icon" />
                   Copy Team ID
                 </div>
-                <div className="d-none d-md-block">{ID}</div>
+                <div className="d-none d-lg-block">{ID}</div>
                 
               </div>
 
@@ -175,7 +197,7 @@ const Details = () => {
                   Password
                 </div>
                 <form className="input-group input-group-sm" onSubmit={e => changePassword(e)}>
-                  <input type="text" className="form-control" placeholder="Type new password" value={password} onChange={e => setPassword(e.target.value)} />
+                  <input type="text" className="form-control" placeholder="Set password" value={password} onChange={e => setPassword(e.target.value)} />
                   <button className="btn btn-outline-secondary" type="submit">Save</button>
                 </form>
               </div>               
@@ -211,6 +233,15 @@ const Details = () => {
                 </ul>           
               
               </> : <></>}
+
+              {/* Delete Team */}
+              <div className="box-item text-danger">
+                <div className="box-item-left">
+                  <IoMdTrash />
+                  Delete team
+                </div>
+                <button className="btn btn-sm btn-outline-danger" onClick={deleteGroup}>Delete</button>
+              </div>
             
             </div>
           </div>

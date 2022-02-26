@@ -38,9 +38,8 @@ const Chat = () => {
   // Kick tracker
   useEffect(() => {
     const detach = onValue(ref(db, 'teams/' + ID + '/members/'), (snapshot) => {
-      if (!snapshot.exists()) return
-      if (!snapshot.val()[currentUser.displayName])
-        navigate('/t/add', {replace: true})
+      if (!snapshot.exists()) return navigate('/t/add', {replace: true})
+      if (!snapshot.val()[currentUser.displayName]) navigate('/t/add', {replace: true})
     })
     return () => detach()
   })

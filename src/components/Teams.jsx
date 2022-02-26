@@ -57,7 +57,7 @@ const Teams = () => {
       <div id='teams-list' >
         {teams && teams.map(team => (<div className={`team ${ID===team.id ? 'team-active' : ''}`}  key={team.id}>
           <Link to={`/t/${team.id}`} className='team-info' >
-            <Avatar name={team.name} round={true} size="30" textSizeRatio={1.5} />
+            <Avatar name={team.name} round={true} size="40" textSizeRatio={1.5} />
             <div className='d-flex flex-column'>
               <div className='team-name'>{team.name}</div>
               {team?.lastMessage?.user && team?.lastMessage?.text ? 
