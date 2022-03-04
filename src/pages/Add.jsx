@@ -98,7 +98,7 @@ const Add = () => {
             <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Join</button>
           </form>
           <input type="text" className="form-control mt-2" placeholder="Password (Optional)" value={joinTeamPW} onChange={e => setJoinTeamPW(e.target.value)} />
-          <p className="note">You can find Team ID, at the end of url. <br /> It's right after t/, usualy start with hyphen</p>
+          <p className="note">You can find Team ID, at the end of url. <br /> talkabout.netlify.app/t/<span>-MwDjC2jigypXMjDsY_K</span></p>
 
         </div>
     </div>

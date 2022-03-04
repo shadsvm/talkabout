@@ -15,5 +15,9 @@ form{
 .note{
   font-size: .9rem;
   padding-top: 1rem;
-  color: var(--dark-4-2);
+  color: var(--dark-1);
+  span{
+    text-decoration: underline;
+    text-decoration-color: blue;
+  }
 }

@@ -4,13 +4,13 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
 import Teams from './components/Teams';
-import Add from './components/Add';
 
 import { AuthProvider } from './contexts/AuthContext';
 import Dashboard from './pages/Dashboard';
 import Chat from './components/Chat';
 import Profile from './pages/Profile';
 import Details from './pages/Details';
+import Add from './pages/Add';
 
 function App() {
 

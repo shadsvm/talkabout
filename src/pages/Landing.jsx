@@ -18,8 +18,8 @@ const Landig = () => {
           <h5 className='pt-3'>Create your own team, then send a URL to your friend, </h5>
           <h5>or join to already existing team by pasting a URL</h5>
           <div id='btn-group' className='d-flex flex-column flex-md-row'>
-            <Link to='/register' id='sign-up' className='btn btn-light'> <BiChat /> Create an account</Link>
-            <Link to='/login' id='sing-in' className='btn btn-dark'>Open TalkAbout in your browser</Link>
+            <Link to='/register' id='sign-up' className='btn btn-light'> Create an account</Link>
+            <Link to='/login' id='sing-in' className='btn btn-dark'> <BiChat /> Sign In</Link>
           </div>
         </div>
       </main>

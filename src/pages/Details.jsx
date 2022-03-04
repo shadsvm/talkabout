@@ -63,7 +63,7 @@ const Details = () => {
   const changePassword = event => {
     event.preventDefault()
     update(ref(db, 'teams/' + ID), {password: password})
-    push(ref(db, "/teams/" + ID + '/messages'), {text: `${currentUser.displayName} has group password.`, type: 'prompt', date: new Date()})
+    push(ref(db, "/teams/" + ID + '/messages'), {text: `${currentUser.displayName} changed password.`, type: 'prompt', date: new Date()})
     setPassword('')
   }
   
@@ -197,7 +197,7 @@ const Details = () => {
                   Password
                 </div>
                 <form className="input-group input-group-sm" onSubmit={e => changePassword(e)}>
-                  <input type="text" className="form-control" placeholder="Set password" value={password} onChange={e => setPassword(e.target.value)} />
+                  <input type="text" className="form-control" placeholder="Set a password" value={password} onChange={e => setPassword(e.target.value)} />
                   <button className="btn btn-outline-secondary" type="submit">Save</button>
                 </form>
               </div>               
