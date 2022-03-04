@@ -93,8 +93,8 @@ input:focus, input.form-control:focus {
 }
 
 @keyframes pulse {
-  0% {border: 0px;}
-  20% {border: 2px solid green;}
-  80% {border: 2px solid green;}
-  100% {border: 0px;}
+  0% {background-color: var(--dark-5)}
+  20% {background-color: var(--dark-3)}
+  80% {background-color: var(--dark-3)}
+  100% {background-color: var(--dark-5);}
 }
